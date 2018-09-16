@@ -88,3 +88,15 @@ const `int`* p;  // const 修饰*p，p是指针，*p是指针指向的对象，�
 int const* p;  // const修饰*p,p是指针，*p是指针指向的对象，不可变   
 int* const p;  // const修饰p,p不可变，p指向的对象可变  
 const int* const p;  // 前一个const 修饰*p，后一个const修饰p，指针p和p指向的对象都不可变  
+
+4.修饰函数的参数  
+const修饰符也可以修饰函数的参数，当不希望这个参数值被函数体内意外改变时使用。例如：  
+void Fun(const int i);  
+告诉编译器i在函数体中的不能改变，从而防止了使用者的一些无意的或错误的修改。 
+
+5.修饰函数的返回值   
+const修饰符也可以修饰函数的返回值，返回值不可被改变。例如：   
+const int Fun(void);  
+在另一连接文件中引用const只读变量；  
+extern const int i;   // 正确的声明  
+extern const int j = 10;  // 错误!只读变量的值不能改变。  
