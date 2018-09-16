@@ -3,16 +3,16 @@
 [https://www.cnblogs.com/zedosu/p/6710167.html](https://www.cnblogs.com/zedosu/p/6710167.html)
 #### 2.new/delete和malloc/free的用法和区别 ####
 
-> 1.malloc/free为C标准库函数，而new/delete为C++的操作符    
-> 2.malloc开辟空间类型大小需要手动计算，new是由编译器自己计算     
-> 3.malloc返回值类型为void*，必须强转为对应类型的指针，new则直接返回对应类型的指针     
-> 4.malloc开辟内存时返回内存地址需要判空，失败返回NULL，而new则不需要判断，因为内存分配失败时，它会剖出异常bad_alloc    
-> 5.malloc/free为函数只是开辟空间/释放空间，new/delete不仅会开辟空间，还会调用构造函数和析构函数进行初始化和清理    
-> 6.new/delete底层是基于malloc/free来实现的，而malloc/free不能基于new/delete实现    
-> 7.new/delete是操作符可以被重载，而malloc/free不行    
-> 8.对于malloc分配内存后，若在使用过程中内存分配不够或太多，这时可以使用realloc函数对其进行扩充或缩小，但是new分配好的内存不能这样被直观简单的改变     
-> 9.对于new/delete若内存分配失败，用户可以指定处理函数或重新制定分配器（new_handler(可以在此处进行扩展)），malloc/free用户是不可以处理     
-> 10.对于new/delete与malloc/free申请内存位置说明，malloc我们知道它是在堆上分配内存的，但new其实不能说是在堆上，C++中，对new申请内存位置有一个抽象概念，它为自由存储区，它可以在堆上，也可以在静态存储区上分配，这主要取决于operator new实现细节，取决与它在哪里为对象分配空间   
+1.malloc/free为C标准库函数，而new/delete为C++的操作符    
+2.malloc开辟空间类型大小需要手动计算，new是由编译器自己计算     
+3.malloc返回值类型为void*，必须强转为对应类型的指针，new则直接返回对应类型的指针     
+4.malloc开辟内存时返回内存地址需要判空，失败返回NULL，而new则不需要判断，因为内存分配失败时，它会剖出异常bad_alloc    
+5.malloc/free为函数只是开辟空间/释放空间，new/delete不仅会开辟空间，还会调用构造函数和析构函数进行初始化和清理    
+6.new/delete底层是基于malloc/free来实现的，而malloc/free不能基于new/delete实现    
+7.new/delete是操作符可以被重载，而malloc/free不行    
+8.对于malloc分配内存后，若在使用过程中内存分配不够或太多，这时可以使用realloc函数对其进行扩充或缩小，但是new分配好的内存不能这样被直观简单的改变     
+9.对于new/delete若内存分配失败，用户可以指定处理函数或重新制定分配器（new_handler(可以在此处进行扩展)），malloc/free用户是不可以处理     
+10.对于new/delete与malloc/free申请内存位置说明，malloc我们知道它是在堆上分配内存的，但new其实不能说是在堆上，C++中，对new申请内存位置有一个抽象概念，它为自由存储区，它可以在堆上，也可以在静态存储区上分配，这主要取决于operator new实现细节，取决与它在哪里为对象分配空间   
 
 #### 3.C++中struct和class的区别 ####
 1.默认的访问权限，struct是public的，class是private的   
