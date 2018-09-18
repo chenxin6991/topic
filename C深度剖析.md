@@ -100,3 +100,45 @@ const int Fun(void);
 在另一连接文件中引用const只读变量；  
 extern const int i;   // 正确的声明  
 extern const int j = 10;  // 错误!只读变量的值不能改变。  
+
+----------
+**大小端模式对union类型数据的影响**  
+
+    union
+    {
+    	int i;
+		char a[2];
+    }*p, u;
+
+	p = &u;
+	p->a[0] = 0x39;
+	p->a[1] = 0x38;
+
+p.i的值应该为多少呢？  
+考虑大小端   
+小端：  
+全局变量  0x00003839  
+局部变量  vc++ 6.0 vs 2018 -> 0xcccc3839  
+centos 7 下    0x????3839   ?->随机数  
+
+----------
+在x86系统下，输出的值为多少？ 
+ 
+	#include <stdio.h>
+
+	int main(void)  
+	{
+		int a[5] = {1, 2, 3, 4, 5};
+		int* ptr1 = (int*)(&a + 1);
+		int* ptr2 = (int*)((int)a + 1);
+		printf("%x, %x\n", ptr1[-1], *ptr2);
+		return 0;
+	}
+
+vs 2013   
+5, 2000000   
+
+
+----------
+**typedef**   
+给一个已经存在的数据类型取一个别名，而非定义一个新的数据类型。  
